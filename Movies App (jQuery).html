@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Movies App</title>
+        </head>
+        <body>
+            <h1>Movie Rating App</h1>
+            <form>
+                <label for="movie-title">Movie title</label>
+                <input type="text" id="movie-title" placeholder="Type here">
+                <label for="movie-rating">Movie rating</label>
+                <input type="number" min="0" max="10" id="movie-rating" placeholder="Select">
+                <input type="submit" value="Submit" id="submit-button">
+            </form>
+            <h3>Movie list</h3>
+            <button id="name-sort">Sort by name</button>
+            <button id="low-to-high">Sort by rating (lowest to highest)</button>
+            <button id="high-to-low">Sort by rating (highest to lowest)</button>
+            <button id="original-order">Back to original order</button>
+            <table>
+                 <thead id="movie-list-header">
+                     <tr>
+                         <th>Movie</th>
+                         <th>Rating</th>
+                     </tr>
+                 </thead>
+                 <tbody id="movie-list-body">
+                    
+                 </tbody>
+            </table>
+            <script
+                src="https://code.jquery.com/jquery-3.7.1.min.js"
+                integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+                crossorigin="anonymous"></script>
+            <script src="Movies App (jQuery).js"></script>
+        </body>
+    </html>
