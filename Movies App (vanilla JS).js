@@ -23,25 +23,26 @@ function addMovie(movie, rating) {
 movieTable.addEventListener('click', function (event) {
     if (event.target.tagName === 'BUTTON') {
         event.target.parentElement.parentElement.remove(); // Removes movie from the DOM
-        for (let i = 0; i < movieRatingArray.length; i++){ // Removes movie from the movie rating array
-            if (movieRatingArray[i].movie ===
+        // Removes movie from the movieRatingArray
+        for (let movie of movieRatingArray){
+            if (movie.movie ===
                 event.target.parentElement.previousSibling.previousSibling.innerText) {
-                const index = movieRatingArray.indexOf(movieRatingArray[i]);
+                const index = movieRatingArray.indexOf(movie);
                 if (index > -1) {
                     movieRatingArray.splice(index, 1);
                 }
             }
-        }
-        // Removes movie from the original array.
-        for (let i = 0; i < originalArray.length; i++){
-            if (originalArray[i].movie ===
+        };
+        // Removes movie from the originalArray.
+        for (let movie of originalArray){
+            if (movie.movie ===
                 event.target.parentElement.previousSibling.previousSibling.innerText) {
-                const index = originalArray.indexOf(originalArray[i]);
+                const index = originalArray.indexOf(movie);
                 if (index > -1) {
                     originalArray.splice(index, 1);
                 }
             }
-        }
+        };
     };
 });
 // Event listenter for submit button
@@ -60,10 +61,10 @@ submit.addEventListener('click', function (event) {
     }
     addMovie(movie, rating); // Callback function
     const newTR = document.createElement('tr'); // creates new table row element
-    for (let i = 0; i < movieRatingArray.length; i++){
-        newTR.innerHTML = `<td>${movieRatingArray[i].movie}</td><td>${movieRatingArray[i].rating}</td><td><button>Delete</button></td>`
+    for (let movie of movieRatingArray){
+        newTR.innerHTML = `<td>${movie.movie}</td><td>${movie.rating}</td><td><button>Delete</button></td>`;
         movieTable.append(newTR);
-    };
+    }
     movieInput.value = ''; // resets input field
     movieRating.value = ''; // resets input field
 });
@@ -71,9 +72,9 @@ submit.addEventListener('click', function (event) {
 nameSort.addEventListener('click', function () {
     // Deletes the old list from the DOM by iterating over the <tr> tags
     const deleteMovies = Array.from(movieTable.children);
-    for (let i = 0; i < deleteMovies.length; i++){
-        deleteMovies[i].remove();
-    };
+    for (let movie of deleteMovies){
+        movie.remove();
+    }
     // Calculates the new order
     const newSortedArray = movieRatingArray.sort(function (a, b) {
         if (a.movie < b.movie) {
@@ -85,9 +86,9 @@ nameSort.addEventListener('click', function () {
         return 0;
     });
     // Appends the rating list to the DOM.
-    for (let i = 0; i < newSortedArray.length; i++){
+    for (let movie of newSortedArray){
         const newTR = document.createElement('tr');
-        newTR.innerHTML = `<td>${newSortedArray[i].movie}</td><td>${newSortedArray[i].rating}</td><td><button>Delete</button></td>`
+        newTR.innerHTML = `<td>${movie.movie}</td><td>${movie.rating}</td><td><button>Delete</button></td>`;
         movieTable.append(newTR);
     };
 });
@@ -95,8 +96,8 @@ nameSort.addEventListener('click', function () {
 ratingLowToHigh.addEventListener('click', function () {
     // Deletes the old list from the DOM by iterating over the <tr> tags
     const deleteMovies = Array.from(movieTable.children);
-    for (let i = 0; i < deleteMovies.length; i++){
-        deleteMovies[i].remove();
+    for (let movie of deleteMovies){
+        movie.remove();
     };
     // Calculates the new order
     const newSortedArray = movieRatingArray.sort(function (a, b) {
@@ -109,9 +110,9 @@ ratingLowToHigh.addEventListener('click', function () {
         return 0;
     });
     // Appends the new rating list to the DOM.
-    for (let i = 0; i < newSortedArray.length; i++){
+    for (let movie of newSortedArray){
         const newTR = document.createElement('tr');
-        newTR.innerHTML = `<td>${newSortedArray[i].movie}</td><td>${newSortedArray[i].rating}</td><td><button>Delete</button></td>`
+        newTR.innerHTML = `<td>${movie.movie}</td><td>${movie.rating}</td><td><button>Delete</button></td>`;
         movieTable.append(newTR);
     };
 });
@@ -119,8 +120,8 @@ ratingLowToHigh.addEventListener('click', function () {
 ratingHighToLow.addEventListener('click', function () {
     // Deletes the old list from the DOM by iterating over the <tr> tags
     const deleteMovies = Array.from(movieTable.children);
-    for (let i = 0; i < deleteMovies.length; i++){
-        deleteMovies[i].remove();
+    for (let movie of deleteMovies){
+        movie.remove();
     };
     // Calculates the new order
     const newSortedArray = movieRatingArray.sort(function (a, b) {
@@ -133,9 +134,9 @@ ratingHighToLow.addEventListener('click', function () {
         return 0;
     });
     // Appends the rating list to the DOM.
-    for (let i = 0; i < newSortedArray.length; i++){
+    for (let movie of newSortedArray){
         const newTR = document.createElement('tr');
-        newTR.innerHTML = `<td>${newSortedArray[i].movie}</td><td>${newSortedArray[i].rating}</td><td><button>Delete</button></td>`
+        newTR.innerHTML = `<td>${movie.movie}</td><td>${movie.rating}</td><td><button>Delete</button></td>`;
         movieTable.append(newTR);
     };
 });
@@ -143,13 +144,13 @@ ratingHighToLow.addEventListener('click', function () {
 originalOrder.addEventListener('click', function () {
     // Deletes the old list from the DOM by iterating over the <tr> tags
     const deleteMovies = Array.from(movieTable.children);
-    for (let i = 0; i < deleteMovies.length; i++) {
-        deleteMovies[i].remove();
+    for (let movie of deleteMovies){
+        movie.remove();
     };
     // Appends the rating list to the DOM.
-    for (let i = 0; i < originalArray.length; i++){
+    for (let movie of originalArray){
         const newTR = document.createElement('tr');
-        newTR.innerHTML = `<td>${originalArray[i].movie}</td><td>${originalArray[i].rating}</td><td><button>Delete</button></td>`
+        newTR.innerHTML = `<td>${movie.movie}</td><td>${movie.rating}</td><td><button>Delete</button></td>`;
         movieTable.append(newTR);
     };
 });
