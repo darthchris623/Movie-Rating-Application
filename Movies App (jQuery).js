@@ -1,12 +1,6 @@
 console.log('Movies App (jQuery)');
-const movieTable = $('#movie-list-body'); // For the purpose of event delegation
-const movieInput = $('#movie-title'); // Text input for movie title
-const movieRating = $('#movie-rating'); // Number input for movie rating
-const submit = $('#submit-button'); // Submit button
-
 let movieRatingArray = []; // Will hold the movies and ratings inside object literals.
 const originalArray = []; // Will retain the original order in which the movies were submitted.
-
 /* Adds the movie and rating to an object literal
 then pushes it to the movieRatingArray */
 function addMovie(movie, rating) {
@@ -43,8 +37,8 @@ $('tbody').on('click', function (event) {
 // Submit button with jQuery
 $('#submit-button').on('click', function (event) {
     event.preventDefault();
-    const movie = movieInput.val();
-    const rating = parseFloat($(movieRating).val()); // Rating is a number value, not string
+    const movie = $('#movie-title').val();
+    const rating = parseFloat($('#movie-rating').val()); // Rating is a number value, not string
     if (movie.length < 2) { // checks to make sure input value is at least 2 characters long
         return;
     };
@@ -56,8 +50,8 @@ $('#submit-button').on('click', function (event) {
     }
     addMovie(movie, rating); // Callback function
     $('tbody').append(`<tr><td>${movie}</td><td>${rating}</td><td><button>Delete</button></td><tr>`);
-    movieInput.val(''); // resets input field
-    movieRating.val('');// resets input field
+    $('#movie-title').val(''); // resets input field
+    $('#movie-rating').val('');// resets input field
 });
 // Sorts the movies by alphabetical order
 $('#name-sort').click(function () {
